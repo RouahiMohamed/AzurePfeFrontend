@@ -7,6 +7,9 @@ const USER_KEY = 'auth-user';
 })
 export class StorageService {
   constructor() {}
+  signOut() {
+    window.sessionStorage.clear();
+  }
 
   clean(): void {
     window.sessionStorage.clear();
