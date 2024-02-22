@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- main
+- dev
 
 pool:
   vmImage: ubuntu-latest
@@ -20,4 +20,10 @@ steps:
     npm install
     ng build --configuration=production
   displayName: 'npm install and build'
-
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker'
+    repository: 'mohamedrouahi/angular-frontend'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: 'latest'
